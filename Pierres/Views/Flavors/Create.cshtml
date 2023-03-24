@@ -3,19 +3,12 @@
 }
 
 @model Pierres.Models.Flavor
-@using Pierres.Models
 
-<form method = "post">
-  <label for="flavorType">Flavors:</label>
-  <input type = "text" id="flavorType" name="flavorType">
+<h4>Add a new Flavor</h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.FlavorType, "Flavor Type")
+  @Html.TextBoxFor(model => model.FlavorType)
   <br>
-  <table>
-  @foreach (Treat treat in ViewBag.Treats)
-  {
-    <tr>
-      <td>@treat.TreatType</td>
-      <td><input name="wutTreats" type="checkbox" value="@treat.TreatId"></td>
-    </tr>
-  }
-</form>
-<input type="submit" value="Save this flavor type">
+  <input type="submit" value="Add new Flavor"  class="btn btn-primary"/>
+}

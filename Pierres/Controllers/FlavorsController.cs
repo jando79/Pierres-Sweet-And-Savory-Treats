@@ -33,33 +33,14 @@ namespace Pierres.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.Treats = _db.Treats.ToList(); 
-      return View(); 
+      return View();
     }
 
     [HttpPost]
-    public ActionResult Create(string flavorType, List<int> wutTreats)
+    public ActionResult Create(Flavor flavor)
     {
-      Flavor newFlavor = new Flavor();
-      newFlavor.FlavorType = flavorType;
-      _db.Flavors.Add(newFlavor);
+      _db.Flavors.Add(flavor);
       _db.SaveChanges();
-
-      if(wutTreats.Count != 0)
-      {
-        foreach(int treat in wutTreats)
-        {
-          #nullable enable
-          TreatFlavor? joinTreat = _db.TreatFlavors.FirstOrDefault(join => (join.FlavorId == newFlavor.FlavorId && join.TreatId == treat));
-          #nullable disable
-          if (joinTreat == null)
-          
-           {
-              _db.TreatFlavors.Add(new TreatFlavor() { FlavorId = newFlavor.FlavorId, TreatId = treat });
-              _db.SaveChanges();
-           }
-        }
-      }
       return RedirectToAction("Index");
     }
 
@@ -109,7 +90,7 @@ namespace Pierres.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddTreat(Flavor flavor, int machineId)
+    public ActionResult AddTreat(Flavor flavor, int treatId)
     {
       #nullable enable
       TreatFlavor? joinEntity = _db.TreatFlavors.FirstOrDefault(join => (join.TreatId == treatId && join.FlavorId == flavor.FlavorId));

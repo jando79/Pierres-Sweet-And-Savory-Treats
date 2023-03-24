@@ -1,27 +1,16 @@
 @{
-  Layout = "_Layout2";
+  Layout = "_Layout";
 }
 
 @model Pierres.Models.Treat
-@using Pierres.Models
 
-<h1>Create a new Treat!</h1>
+<h4>Add a new Treat</h4>
+<p>@Html.ValidationMessageFor(model => model.TreatType, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
 
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.TreatType)
+  @Html.TextBoxFor(model => model.TreatType, new { required="required" })
 
-<form method = "post">
-  <label for="title">Treat</label>
-  <input type = "text" id="treatType" name="treatType">
-  <br>
-  <table>
-  @foreach (Flavor flavor in ViewBag.Flavors)
-  {
-    <tr>
-      <td>@flavor.FlavorType</td>
-      <td><input name="wutFlavors" type="checkbox" value="@flavor.FlavorId"></td>
-    </tr>
-  }
-  </table>
-  <input type="submit" value="Save this Treat!">
-</form>
-
-<p>@Html.ActionLink("Show all Treats", "Index")
+  <input type="submit" value="Add new Treat" class="btn btn-primary"/>
+}
