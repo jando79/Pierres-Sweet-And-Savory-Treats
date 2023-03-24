@@ -12,7 +12,7 @@ using System.Security.Claims;
 
 namespace Pierres.Controllers
 {
-  //[Authorize]
+  [Authorize]
   public class FlavorsController : Controller
   {
     private readonly PierresContext _db;
@@ -22,7 +22,7 @@ namespace Pierres.Controllers
       _db = db;
     }
 
-    //[AllowAnonymous]
+    [AllowAnonymous]
     public ActionResult Index()
     {
       List<Flavor> model = _db.Flavors
@@ -44,6 +44,7 @@ namespace Pierres.Controllers
       return RedirectToAction("Index");
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Flavor thisFlavor = _db.Flavors

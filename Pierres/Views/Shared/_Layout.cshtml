@@ -11,8 +11,41 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body>
+   <nav class="navbar navbar-expand-lg" style="background-color: rgb(8, 8, 8);">
+    
+      <a class="navbar-brand" href="/"></a>
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          
+          <li class="nav-item active">
+            <h5><a class="nav-link" href="/" style="color: rgb(235, 248, 235);">Home</a></h5>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/Treats" style="color: rgb(235, 248, 235);" >Treats</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/Flavors" style="color: rgb(235, 248, 235)">Flavors</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/Account" style="color: rgb(235, 248, 235)">Login</a>
+          </li>
+        
+        </ul>
+      </div>
+    
+    </nav>
+    
+    <div id="main-body">
     @RenderBody()
+    </div>
     <br>
-    @await Html.PartialAsync("NavLinks")
   </body>
 </html>

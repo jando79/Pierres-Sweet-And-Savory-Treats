@@ -1,11 +1,12 @@
-/* body {
-  font-family: sans-serif;
-  background: rgb(164, 223, 247);
-  background-image: linear-gradient(90deg, rgba(245, 227, 238, 0.5) 50%, transparent 0),
-                    linear-gradient(rgba(245, 227, 238, 0.5) 50%, transparent 0);
-  background-size: 30px 30px, 30px 30px;
-} */
-
+body {
+  color: rgb(253, 6, 130);   
+  background-image: url('https://cdn.shopify.com/s/files/1/0840/1021/products/4-lace-doily-white-660673.jpg?v=1671200897 ');
+  margin: 0;
+  text-decoration: none;
+  text-align: center;
+  font-size: x-large;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 div#main-body {
   margin-top: 10px;

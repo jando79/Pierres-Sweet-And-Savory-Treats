@@ -12,7 +12,7 @@ using System.Security.Claims;
 
 namespace Pierres.Controllers
 {
-  //[Authorize]
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierresContext _db;
@@ -22,6 +22,7 @@ namespace Pierres.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
      public ActionResult Index()
     {
       List<Treat> model = _db.Treats
@@ -44,7 +45,7 @@ namespace Pierres.Controllers
     }
 
 
-
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Treat thisTreat = _db.Treats
