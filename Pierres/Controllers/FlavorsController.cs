@@ -26,7 +26,8 @@ namespace Pierres.Controllers
     public ActionResult Index()
     {
       List<Flavor> model = _db.Flavors
-                               .OrderBy(treat => treat.TreatType).ToList();
+                               .Include(flavor => flavor.Treat)
+                               .ToList();
       return View(model);
     }
 
