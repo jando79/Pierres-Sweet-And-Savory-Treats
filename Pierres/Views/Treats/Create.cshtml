@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout2";
+}
+
+@model Pierres.Models.Treat
+@using Pierres.Models
+
+<h1>Create a new Treat!</h1>
+
+
+<form method = "post">
+  <label for="title">Treat</label>
+  <input type = "text" id="treatType" name="treatType">
+  <br>
+  <table>
+  @foreach (Flavor flavor in ViewBag.Flavors)
+  {
+    <tr>
+      <td>@flavor.FlavorType</td>
+      <td><input name="wutFlavors" type="checkbox" value="@flavor.FlavorId"></td>
+    </tr>
+  }
+  </table>
+  <input type="submit" value="Save this Treat!">
+</form>
+
+<p>@Html.ActionLink("Show all Treats", "Index")

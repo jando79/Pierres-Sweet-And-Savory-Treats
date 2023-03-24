@@ -30,27 +30,33 @@ namespace Pierres.Controllers
       return View(model);
     }
 
-    public ActionResult Create()
-    {
-      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorType");
+    public ActionResult Create() 
+    { 
+      ViewBag.Flavors = _db.Flavors.ToList();
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Treat treat)
+    public ActionResult Create(string treatType, List<int> wutFlavors)
     {
-      if (!ModelState.IsValid)
+      Treat newTreat = new Treat();
+      newTreat.TreatType = treatType;
+      _db.Treats.Add(newTreat);
+      _db.SaveChanges();
+
+      if(wutFlavors.Count != 0)
       {
-        ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorType");
-        return View(treat);
-      }
-      else
-      {
-        _db.Treats.Add(treat);
-        _db.SaveChanges();
-        _db.TreatFlavors.Add(new TreatFlavor() { FlavorId = treat.FlavorId, TreatId = treat.TreatId });
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+        foreach(int flavor in wutFlavors)
+        {
+          #nullable enable
+          TreatFlavor? treat = _db.TreatFlavors.FirstOrDefault(treat => (treat.FlavorId== flavor && treat.TreatId == newTreat.TreatId));
+          #nullable disable
+          if(treat != null)
+          {
+            _db.TreatFlavors.Add(new TreatFlavor() { TreatId = newTreat.TreatId, FlavorId = flavor });
+            _db.SaveChanges();
+          }
+        }
       }
     }
 
@@ -66,7 +72,7 @@ namespace Pierres.Controllers
     public ActionResult Edit(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
-      ViewBag.FlavorId = new SelectList(_db.FLavors, "FlavorId", "FlavorType");
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorType");
       return View(thisTreat);
     }
 

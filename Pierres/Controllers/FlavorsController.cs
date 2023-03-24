@@ -41,7 +41,7 @@ namespace Pierres.Controllers
     public ActionResult Create(string flavorType, List<int> wutTreats)
     {
       Flavor newFlavor = new Flavor();
-      newFlavor.FalvorType = flavorType;
+      newFlavor.FlavorType = flavorType;
       _db.Flavors.Add(newFlavor);
       _db.SaveChanges();
 
@@ -55,7 +55,7 @@ namespace Pierres.Controllers
           if (joinTreat == null)
           
            {
-              _db.TreatFlavors.Add(new TreatFlavor() { FlavorId = newFlavor.FLavorId, TreatId = treat });
+              _db.TreatFlavors.Add(new TreatFlavor() { FlavorId = newFlavor.FlavorId, TreatId = treat });
               _db.SaveChanges();
            }
         }
@@ -109,7 +109,7 @@ namespace Pierres.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddFlavor(Flavor flavor, int flavorId)
+    public ActionResult AddTreat(Flavor flavor, int machineId)
     {
       #nullable enable
       TreatFlavor? joinEntity = _db.TreatFlavors.FirstOrDefault(join => (join.TreatId == treatId && join.FlavorId == flavor.FlavorId));

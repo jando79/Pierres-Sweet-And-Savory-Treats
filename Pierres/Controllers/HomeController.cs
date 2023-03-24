@@ -21,7 +21,7 @@ namespace Pierres.Controllers
         Flavor[] flavors = _db.Flavors.ToArray();
         Dictionary<string,object[]> model = new Dictionary<string, object[]>();
         model.Add("treats", treats);
-        model.Add("flavors", falvors);
+        model.Add("flavors", flavors);
         return View(model);
       }
     }
