@@ -10,6 +10,7 @@ namespace Pierres.Models
     [Required(ErrorMessage = "No treats have been added!")]
     public string TreatType { get; set; }
     public Flavor Flavor { get; set; }
-    public List<TreatFlavor> JoinFlavor { get; } 
+    public List<TreatFlavor> JoinTreat { get; }
+    public ApplicationUser User { get; set; } 
   }
 }

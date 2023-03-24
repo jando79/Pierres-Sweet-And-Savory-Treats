@@ -10,6 +10,7 @@ namespace Pierres.Models
     [Required(ErrorMessage = "The flavors field can't be empty!")]
     public string FlavorType { get; set; }
     public List<Treat> Treat { get; set; }
-    public List<TreatFlavor> JoinFlavor { get; }
+    public List<TreatFlavor> JoinTreat { get; }
+    public ApplicationUser User { get; set; }
   }
 }

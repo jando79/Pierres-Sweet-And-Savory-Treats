@@ -15,7 +15,7 @@ namespace Pierres
 
       builder.Services.AddControllersWithViews();
 
-      builder.Services.AddDbContext<LibraryAppContext>(
+      builder.Services.AddDbContext<PierresContext>(
                         dbContextOptions => dbContextOptions
                           .UseMySql(
                             builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
@@ -24,7 +24,7 @@ namespace Pierres
                       );
       
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<LibraryAppContext>()
+                .AddEntityFrameworkStores<PierresContext>()
                 .AddDefaultTokenProviders();
 
       builder.Services.Configure<IdentityOptions>(options =>
