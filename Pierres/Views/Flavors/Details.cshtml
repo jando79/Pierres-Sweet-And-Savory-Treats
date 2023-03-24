@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Pierres.Models
+@model Pierres.Models.Flavor
+
+<h2>Flavors:</h2>
+<br>
+<h3>@Html.DisplayNameFor(model => model.FlavorType): @Html.DisplayFor(model => model.FlavorType)</h3>
+
+@if(@Model.JoinTreat.Count == 0)
+{
+  <p>This flavor no treat associated with it</p>
+}
+else
+{
+  <h3>Treats:</h3>
+  <ul>
+  @foreach(TreatFlavor join in Model.JoinTreat)
+  {
+    <li>@join.Treat.TreatType</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Edit this Flavor", "Edit")</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>
