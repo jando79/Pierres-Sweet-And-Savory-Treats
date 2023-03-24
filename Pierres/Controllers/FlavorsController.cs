@@ -33,14 +33,33 @@ namespace Pierres.Controllers
 
     public ActionResult Create()
     {
-      return View();
+      ViewBag.Treats = _db.Treats.ToList(); 
+      return View(); 
     }
 
     [HttpPost]
-    public ActionResult Create(Flavor flavor)
+    public ActionResult Create(string flavorType, List<int> wutTreats)
     {
-      _db.Flavors.Add(flavor);
+      Flavor newFlavor = new Flavor();
+      newFlavor.FalvorType = flavorType;
+      _db.Flavors.Add(newFlavor);
       _db.SaveChanges();
+
+      if(wutTreats.Count != 0)
+      {
+        foreach(int treat in wutTreats)
+        {
+          #nullable enable
+          TreatFlavor? joinTreat = _db.TreatFlavors.FirstOrDefault(join => (join.FlavorId == newFlavor.FlavorId && join.TreatId == treat));
+          #nullable disable
+          if (joinTreat == null)
+          
+           {
+              _db.TreatFlavors.Add(new TreatFlavor() { FlavorId = newFlavor.FLavorId, TreatId = treat });
+              _db.SaveChanges();
+           }
+        }
+      }
       return RedirectToAction("Index");
     }
 
