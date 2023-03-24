@@ -1,0 +1,42 @@
+@{
+  Layout = "_Layout";
+}
+  @using Factory.Models;
+
+  <div class="jumbotron text-center">
+    <h1>Welcome to Pierr's Sweet and Savory Treats!</h1>
+    <img src="https://media.istockphoto.com/id/469400194/vector/crazy-scientist.jpg?s=612x612&w=0&k=20&c=NUUt3oYdPHbewfeVQXjXnllSf89mQcmDg4WWZBEvUzY=" alt="Sillystringz" width="30%" length="30%">
+  </div>
+  <br>
+  <hr>
+
+  <h4>Treats:</h4>
+  @if (Model["treats"].Length == 0)
+  {
+    <p>No treats have been added!</p>
+  } 
+  <ul>
+    @foreach (Treat treat in Model["treats"])
+    {
+      <li>@Html.ActionLink(@treat.TreatType, "Details", "Treats", new { id = @treat.TreatId})</li>
+    }
+  </ul>
+
+  <h4>Flavors:</h4>
+  @if (Model["flavors"].Length == 0)
+  {
+    <p>No Flavors have been added!</p>
+  } 
+  <ul>
+    @foreach (Flavor flavor in Model["flavors"])
+    {
+      <li>@Html.ActionLink(@flavor.FlavorType, "Details", "Flavors", new { id = @flavor.FlavorId})</li>
+    }
+  </ul>
+
+  <hr> 
+  <br>
+  <div id="index-nav">
+    <p>@Html.ActionLink("See all Treats", "Index", "Treats")</p>
+    <p>@Html.ActionLink("See all Flavors", "Index", "Flavors")</p> 
+  </div>
