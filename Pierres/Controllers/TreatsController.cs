@@ -37,10 +37,10 @@ namespace Pierres.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(string treatType, List<int> wutFlavors)
+    public ActionResult Create(string treat, List<int> wutFlavors)
     {
       Treat newTreat = new Treat();
-      newTreat.TreatType = treatType;
+      newTreat.TreatType = treat;
       _db.Treats.Add(newTreat);
       _db.SaveChanges();
 
