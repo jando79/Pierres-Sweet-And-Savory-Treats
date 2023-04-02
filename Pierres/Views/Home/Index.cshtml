@@ -5,6 +5,7 @@
 
   <div class="jumbotron text-center">
     <h1>Welcome to Pierre's Sweet and Savory Treats!</h1>
+    <img src="https://media.istockphoto.com/id/1140197448/vector/sweet-pastry-icons-set-vector-bakery-products.jpg?s=612x612&w=0&k=20&c=-60wxze2QPm6XKOmMUgmdjnVn4o0o5eJueAouoM4VZE=" alt="treats" width="25%" length="25%">
   </div>
   <br>
   <hr>
@@ -14,21 +15,18 @@
   {
     <p>No treats have been added!</p>
   } 
-  <ul>
-    @foreach (Treat treat in Model["treats"])
-    {
-      <li>@Html.ActionLink(@treat.TreatType, "Details", "Treats", new { id = @treat.TreatId})</li>
-    }
-  </ul>
+  @foreach (Treat treat in Model["treats"])
+  {
+    <p>@Html.ActionLink(@treat.TreatType, "Details", "Treats", new { id = @treat.TreatId})</p>
+  }
 
   <h4>Flavors:</h4>
   @if (Model["flavors"].Length == 0)
   {
     <p>No Flavors have been added!</p>
   } 
-  <ul>
-    @foreach (Flavor flavor in Model["flavors"])
-    {
-      <li>@Html.ActionLink(@flavor.FlavorType, "Details", "Flavors", new { id = @flavor.FlavorId})</li>
-    }
-  </ul>
+  @foreach (Flavor flavor in Model["flavors"])
+  {
+    <p>@Html.ActionLink(@flavor.FlavorType, "Details", "Flavors", new { id = @flavor.FlavorId})</p>
+  }
+  

@@ -14,4 +14,7 @@ else
  @Html.ActionLink($"{flavor.FlavorType}", "Details", new { id = flavor.FlavorId })
   <br>
 }
-<p>@Html.ActionLink("Back to list", "Home", "Index")</p>
+
+<div id="index-nav">
+<p>@Html.ActionLink("Add new Flavor", "Create")</p>
+</div>

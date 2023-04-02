@@ -16,11 +16,10 @@
 else
 {
   <h4>Flavors for this Treat:</h4>
-  <ul>
   
   @foreach(TreatFlavor join in Model.JoinTreat)
   {
-    <li>@join.Flavor.FlavorType</li>
+    <p>@join.Flavor.FlavorType</p>
 
     @using (Html.BeginForm("DeleteJoin", "Treats"))
     {
@@ -28,7 +27,6 @@ else
       <input type="submit" value="Delete"/>
     }
   }
-  </ul>
 }
 
 
